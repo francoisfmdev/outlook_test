@@ -3,11 +3,14 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:type="MailApp">
   <Id>e3b5a6b1-6c0f-4d22-9d0a-111122223333</Id>
-  <Version>1.0.0.1</Version>
+  <Version>1.0.0.5</Version>
   <ProviderName>Dev</ProviderName>
   <DefaultLocale>fr-FR</DefaultLocale>
   <DisplayName DefaultValue="Outlook Test (DEV)"/>
-  <Description DefaultValue="Add-in DEV simple sans images"/>
+  <Description DefaultValue="Add-in DEV simple (icônes génériques)"/>
+  <!-- Ces deux lignes ne sont pas indispensables mais gardons-les -->
+  <IconUrl DefaultValue="https://via.placeholder.com/32"/>
+  <HighResolutionIconUrl DefaultValue="https://via.placeholder.com/80"/>
 
   <FormSettings>
     <Form xsi:type="ItemRead"/>
@@ -19,9 +22,7 @@
   </Rule>
 
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
-    <Hosts>
-      <Host Name="Mailbox"/>
-    </Hosts>
+    <Hosts><Host Name="Mailbox"/></Hosts>
 
     <Requirements>
       <Sets DefaultMinVersion="1.3">
@@ -31,8 +32,14 @@
 
     <Resources>
       <Urls>
-        <Url id="functionsJs" DefaultValue="https://raw.githubusercontent.com/francoisfmdev/outlook_test/main/functions.js"/>
+        <Url id="functionsJs" DefaultValue="https://cdn.jsdelivr.net/gh/francoisfmdev/outlook_test@main/functions.js"/>
       </Urls>
+      <Images>
+        <!-- Icônes OBLIGATOIRES pour les commandes -->
+        <Image id="icon16" DefaultValue="https://via.placeholder.com/16"/>
+        <Image id="icon32" DefaultValue="https://via.placeholder.com/32"/>
+        <Image id="icon80" DefaultValue="https://via.placeholder.com/80"/>
+      </Images>
       <ShortStrings>
         <String id="btnLabel" DefaultValue="Test"/>
         <String id="groupLabel" DefaultValue="Add-in DEV"/>
@@ -45,12 +52,10 @@
     <Extensions>
       <Extension Point="MessageReadCommandSurface">
         <OfficeTab id="TabDefault">
-          <Group id="grpRead" label="groupLabel">
+          <Group id="grpRead" label="groupLabel" icon="icon32">
             <Control xsi:type="Button" id="btnRead"
-                     label="btnLabel"
-                     tooltip="btnDesc"
-                     onAction="onTestButtonClick"
-                     enabled="true">
+                     label="btnLabel" tooltip="btnDesc"
+                     icon="icon32" onAction="onTestButtonClick" enabled="true">
               <Action xsi:type="ExecuteFunction">
                 <FunctionName>onTestButtonClick</FunctionName>
               </Action>
@@ -62,12 +67,10 @@
 
       <Extension Point="MessageComposeCommandSurface">
         <OfficeTab id="TabDefault">
-          <Group id="grpCompose" label="groupLabel">
+          <Group id="grpCompose" label="groupLabel" icon="icon32">
             <Control xsi:type="Button" id="btnCompose"
-                     label="btnLabel"
-                     tooltip="btnDesc"
-                     onAction="onTestButtonClick"
-                     enabled="true">
+                     label="btnLabel" tooltip="btnDesc"
+                     icon="icon32" onAction="onTestButtonClick" enabled="true">
               <Action xsi:type="ExecuteFunction">
                 <FunctionName>onTestButtonClick</FunctionName>
               </Action>
