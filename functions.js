@@ -1,7 +1,5 @@
 /* global Office */
-Office.onReady(() => {
-  // Outlook Desktop chargera ce script depuis GitHub Pages (HTTPS)
-});
+Office.onReady(() => {});
 
 function onTestButtonClick(event) {
   try {
@@ -9,19 +7,16 @@ function onTestButtonClick(event) {
       "ok",
       {
         type: "informationalMessage",
-        message: "Tout est OK ✅ (DEV GitHub Pages)",
-        icon: "icon16",
+        message: "Tout est OK ✅ (DEV)",
         persistent: false
       },
       () => event.completed()
     );
   } catch (e) {
-    // Toujours terminer l'action
     event.completed();
   }
 }
 
-// Exposer la fonction pour Add-in Commands
 if (typeof window !== "undefined") {
   window.onTestButtonClick = onTestButtonClick;
 }
