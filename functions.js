@@ -1,5 +1,7 @@
 /* global Office */
-Office.onReady(() => {});
+Office.onReady(() => {
+  console.log("Add-in DEV prêt ✅");
+});
 
 function onTestButtonClick(event) {
   try {
@@ -13,10 +15,12 @@ function onTestButtonClick(event) {
       () => event.completed()
     );
   } catch (e) {
+    console.error("Erreur add-in:", e);
     event.completed();
   }
 }
 
+// Expose la fonction pour Outlook
 if (typeof window !== "undefined") {
   window.onTestButtonClick = onTestButtonClick;
 }
